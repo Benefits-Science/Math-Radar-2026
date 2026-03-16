@@ -2,87 +2,87 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>محاكي المقابلة الشفوية 2026 - الإصدار الشامل</title>
+    <title>رادار المقابلة الشفوية 2026 - الاحترافي</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-blue: #00f2ff; --neon-pink: #ff0055; --dark-bg: #0d0d0f; }
-        body { background: var(--dark-bg); color: #fff; font-family: 'Tajawal', sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
-        
-        /* شريط متحرك علوي */
-        .marquee-container { background: rgba(0, 242, 255, 0.05); border-bottom: 1px solid var(--neon-blue); padding: 10px 0; overflow: hidden; white-space: nowrap; margin-bottom: 20px; }
-        .marquee-text { display: inline-block; animation: marquee 25s linear infinite; color: var(--neon-blue); font-size: 1.1rem; font-weight: bold; }
-        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        :root { --neon-blue: #00f2ff; --neon-pink: #ff0055; --dark-bg: #050505; }
+        * { box-sizing: border-box; }
+        body { background: var(--dark-bg); color: #fff; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; direction: rtl; overflow-x: hidden; }
 
-        /* التصميم الزجاجي */
-        .glass-container { width: 100%; max-width: 1000px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.1); margin: auto; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
-        .main-title { text-align: center; font-size: 2.2rem; color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); margin-bottom: 30px; }
-        .main-title span { color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink); }
+        /* الشريط المتحرك العلوي */
+        .marquee-container { 
+            background: rgba(0, 242, 255, 0.05); border-bottom: 1px solid var(--neon-blue); 
+            padding: 10px 0; overflow: hidden; white-space: nowrap; margin-bottom: 20px; 
+        }
+        .marquee-text { 
+            display: inline-block; animation: marquee 20s linear infinite; 
+            color: var(--neon-blue); font-size: 1.1rem; font-weight: bold; text-shadow: 0 0 10px var(--neon-blue); 
+        }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* الشبكة العلوية للقوائم */
-        .grid-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .nav-card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid #333; transition: 0.3s; }
-        .nav-card:hover { border-color: var(--neon-blue); background: rgba(0, 242, 255, 0.05); }
-        .nav-card label { display: block; font-size: 0.9rem; color: var(--neon-pink); margin-bottom: 8px; font-weight: bold; }
-        select { width: 100%; background: #1a1a1d; color: #fff; border: 1px solid #444; padding: 12px; border-radius: 8px; font-family: 'Tajawal'; cursor: pointer; }
+        .glass-container {
+            background: rgba(15, 15, 15, 0.95); border: 2px solid #222; border-radius: 20px;
+            padding: 20px; width: 95%; max-width: 850px; margin: auto;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+        }
+
+        .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 20px; color: var(--neon-blue); }
+        .main-title span { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); }
+
+        /* القوائم المتجاوبة للهاتف */
+        .grid-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        .nav-card { background: #111; padding: 10px; border-radius: 12px; border: 1px solid #333; }
+        .nav-card label { display: block; font-size: 0.8rem; color: var(--neon-pink); margin-bottom: 5px; }
+        select { width: 100%; background: #000; color: #fff; border: 1px solid var(--neon-blue); padding: 10px; border-radius: 8px; font-family: 'Tajawal'; outline: none; }
 
         /* منطقة السؤال */
-        .question-area { position: relative; background: #000; border-radius: 15px; padding: 50px 25px; min-height: 180px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 1.7rem; margin-bottom: 25px; border-right: 8px solid var(--neon-pink); box-shadow: inset 0 0 30px rgba(255,0,85,0.2); line-height: 1.7; }
-        #counter { position: absolute; top: 15px; left: 20px; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 1.1rem; }
+        .question-display {
+            background: #000; padding: 40px 15px; border: 2px solid #333; border-radius: 15px;
+            font-size: clamp(1.2rem, 5vw, 1.7rem); line-height: 1.6; color: #fff;
+            margin-bottom: 20px; text-align: center; font-weight: 900;
+            border-right: 12px solid var(--neon-blue); box-shadow: inset 0 0 20px rgba(0,242,255,0.05);
+        }
 
-        /* منطقة الإدخال */
-        .input-wrapper { position: relative; width: 100%; margin-bottom: 20px; }
-        textarea { width: 100%; height: 140px; background: rgba(0,0,0,0.6); border: 2px solid #444; border-radius: 15px; padding: 20px; color: #fff; font-family: 'Tajawal'; font-size: 1.2rem; resize: none; box-sizing: border-box; }
-        .mic-btn { position: absolute; top: 20px; left: 20px; background: none; border: none; cursor: pointer; font-size: 1.8rem; color: var(--neon-blue); transition: 0.3s; }
-        .mic-active { color: var(--neon-pink); animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        /* الميكروفون ومنطقة الكتابة */
+        .input-wrapper { position: relative; width: 100%; }
+        textarea {
+            width: 100%; height: 140px; background: #0a0a0a; border: 1px solid #444;
+            border-radius: 12px; color: #fff; padding: 15px; font-size: 1.1rem;
+            outline: none; transition: 0.3s; resize: none;
+        }
+        .mic-btn {
+            position: absolute; bottom: 15px; left: 15px;
+            background: #222; border: 1px solid var(--neon-blue); border-radius: 50%;
+            width: 45px; height: 45px; cursor: pointer; color: var(--neon-blue);
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+            transition: 0.3s;
+        }
+        .mic-btn.active { background: var(--neon-pink); color: #fff; animation: pulse 1s infinite; }
 
-        /* الأزرار */
-        .action-bar { display: flex; gap: 15px; }
-        .btn { flex: 1; padding: 18px; border: none; border-radius: 12px; font-family: 'Tajawal'; font-weight: 900; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
-        .btn-new { background: #222; color: #fff; border: 1px solid #444; }
-        .btn-check { background: var(--neon-pink); color: #fff; box-shadow: 0 0 20px rgba(255,0,85,0.4); }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        /* التغذية الراجعة */
-        #feedback-area { display: none; margin-top: 30px; padding: 25px; border-radius: 15px; border: 2px solid; }
+        .action-bar { display: flex; gap: 10px; margin-top: 15px; }
+        .btn { flex: 1; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; border: none; }
+        .btn-new { background: #fff; color: #000; }
+        .btn-check { background: var(--neon-pink); color: #fff; }
+
+        /* صندوق LCD للنتائج */
+        .lcd-box { margin-top: 20px; padding: 20px; border-radius: 15px; border: 2px solid; display: none; }
         .lcd-success { border-color: var(--neon-blue); color: var(--neon-blue); background: rgba(0,242,255,0.05); }
         .lcd-error { border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(255,0,85,0.05); }
-        .model-ans-box { margin-top: 15px; background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; color: #eee; font-size: 1.1rem; border-right: 5px solid #fff; line-height: 1.8; }
-        /* تحسينات خاصة بالهواتف */
-@media (max-width: 600px) {
-    .main-title {
-        font-size: 1.5rem; /* تصغير العنوان ليتناسب مع عرض الهاتف */
-    }
 
-    .grid-nav {
-        grid-template-columns: 1fr; /* جعل القوائم المنسدلة تظهر فوق بعضها */
-        gap: 10px;
-    }
-
-    .nav-card {
-        padding: 10px;
-    }
-
-    .action-bar {
-        flex-direction: column; /* الأزرار فوق بعضها لتسهيل الضغط بالإبهام */
-    }
-
-    .btn {
-        width: 100%;
-        padding: 15px;
-    }
-
-    textarea {
-        height: 120px;
-        font-size: 1rem;
-    }
-}
+        @media (max-width: 600px) {
+            .grid-nav { grid-template-columns: 1fr; }
+            .action-bar { flex-direction: column; }
+            .main-title { font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
 
 <div class="marquee-container">
-    <div class="marquee-text">نظام رادار المقابلة الشفوية 2026 مفعل... 210 سؤال بانتظارك... بالتوفيق يا أستاذ...</div>
+    <div class="marquee-text">نظام رادار المقابلة الشفوية 2026 مفعّل ... 210 سؤال بانتظارك ... بالتوفيق للجميع</div>
 </div>
 
 <div class="glass-container">
@@ -91,48 +91,45 @@
     <div class="grid-nav">
         <div class="nav-card">
             <label>1. الجانب الشخصي</label>
-            <select id="sel-personal" onchange="updateSelection('personal', this.value)">
+            <select id="sel-personal" onchange="switchSection('personal', this.value)">
                 <option value="0">التعريف بالهوية (15 سؤال)</option>
                 <option value="1">أخلاقيات المهنة (15 سؤال)</option>
             </select>
         </div>
         <div class="nav-card">
-            <label>2. البيداغوجيا والتشريع</label>
-            <select id="sel-pedagogy" onchange="updateSelection('pedagogy', this.value)">
-                <option value="0">أساسيات البيداغوجيا (15 سؤال)</option>
-                <option value="1">التخطيط والتحضير (15 سؤال)</option>
-                <option value="2">تشريع مدرسي 1 (15 سؤال)</option>
-                <option value="3">تشريع مدرسي 2 (15 سؤال)</option>
+            <label>2. البيداغوجيا</label>
+            <select id="sel-pedagogy" onchange="switchSection('pedagogy', this.value)">
+                <option value="0">الأساسيات (15 سؤال)</option>
+                <option value="1">التخطيط (15 سؤال)</option>
+                <option value="2">تشريع 1 (15 سؤال)</option>
+                <option value="3">تشريع 2 (15 سؤال)</option>
             </select>
         </div>
         <div class="nav-card">
-            <label>3. مادة التخصص (رياضيات)</label>
-            <select id="sel-math" onchange="updateSelection('math', this.value)">
-                <option value="0">حساب وجبر (15 سؤال)</option>
-                <option value="1">هندسة مستوية (15 سؤال)</option>
-                <option value="2">إحصاء واحتمالات (15 سؤال)</option>
+            <label>3. الرياضيات</label>
+            <select id="sel-math" onchange="switchSection('math', this.value)">
+                <option value="0">جبر وحساب (15 سؤال)</option>
+                <option value="1">هندسة 1 (15 سؤال)</option>
+                <option value="2">هندسة وإحصاء (15 سؤال)</option>
                 <option value="3">هندسة فضاء (15 سؤال)</option>
-                <option value="4">تكنولوجيا التعليم (15 سؤال)</option>
+                <option value="4">تكنولوجيا (15 سؤال)</option>
             </select>
         </div>
         <div class="nav-card">
             <label>4. إدارة القسم</label>
-            <select id="sel-management" onchange="updateSelection('management', this.value)">
+            <select id="sel-management" onchange="switchSection('management', this.value)">
                 <option value="0">إدارة ومواقف (15 سؤال)</option>
                 <option value="1">صعوبات التعلم (15 سؤال)</option>
-                <option value="2">علاقات الأولياء (15 سؤال)</option>
+                <option value="2">الأولياء والمحيط (15 سؤال)</option>
             </select>
         </div>
     </div>
 
-    <div class="question-area">
-        <div id="counter">00</div>
-        <div id="question-box">اضغط "سؤال جديد" للبدء</div>
-    </div>
-
+    <div class="question-display" id="q-text">اختر القسم ثم اضغط "سؤال جديد"</div>
+    
     <div class="input-wrapper">
-        <textarea id="user-input" placeholder="اكتب إجابتك هنا أو انطقها..."></textarea>
-        <button id="mic-btn" class="mic-btn" onclick="startVoiceRecognition()">🎤</button>
+        <textarea id="user-input" placeholder="اكتب إجابتك هنا أو استخدم الميكروفون..."></textarea>
+        <button class="mic-btn" id="mic-btn" onclick="startVoiceRecognition()">🎤</button>
     </div>
 
     <div class="action-bar">
@@ -140,306 +137,9 @@
         <button class="btn btn-check" onclick="checkResponse()">تحليل الإجابة 📊</button>
     </div>
 
-    <div id="feedback-area"></div>
+    <div id="feedback-area" class="lcd-box"></div>
 </div>
 
-<script>
-// قاعدة البيانات الكاملة 210 سؤال
-const masterDB = {
-    personal: [
-        [ // الهوية
-            { q: "عرف نفسك باختصار؟", a: "الاسم، السن، الإقامة، والشهادة في الرياضيات والخبرة.", key: ["الاسم", "شهادة", "رياضيات"] },
-            { q: "لماذا اخترت التعليم؟", a: "لأنها مهنة شريفة ولرغبتي في تبسيط الرياضيات للتلاميذ.", key: ["مهنة", "تبسيط", "رغبتي"] },
-            { q: "ما هي صفات الأستاذ الناجح؟", a: "الصبر، الدقة، التمكن المعرفي، والعدل.", key: ["صبر", "دقة", "تمكن"] },
-            { q: "كيف تتعامل مع ضغط العمل؟", a: "بالتنظيم، التخطيط المسبق، والعمل الدوري.", key: ["تنظيم", "تخطيط"] },
-            { q: "دورك كقدوة؟", a: "الانضباط، الهندام، والعدل بين التلاميذ.", key: ["انضباط", "قدوة", "هندام"] },
-            { q: "كيف تطور مهاراتك؟", a: "بالمطالعة، الندوات، والتمكن من البرمجيات كـ GeoGebra.", key: ["مطالعة", "برمجيات", "تطوير"] },
-            { q: "موقفك من العمل الجماعي؟", a: "ضروري لتبادل الخبرات وتنسيق الدروس.", key: ["جماعي", "تنسيق", "خبرات"] },
-            { q: "كيف تقيم نجاح حصتك؟", a: "من خلال تفاعل التلاميذ واستيعابهم للنشاط.", key: ["تفاعل", "استيعاب"] },
-            { q: "الدروس الخصوصية؟", a: "الأولوية للجهد داخل القسم، وهي لا تعوض التعليم النظامي.", key: ["خصوصية", "قسم"] },
-            { q: "أهمية الثقافة العامة؟", a: "تساعد في فتح آفاق التلاميذ والربط بين العلوم.", key: ["ثقافة", "آفاق"] },
-            { q: "تقبل النقد؟", a: "بصدر رحب وبحث عن سبل التطوير المهني.", key: ["نقد", "تطوير"] },
-            { q: "فشل المسابقة؟", a: "أواصل تطوير نفسي وأحلل نقاط ضعفي للمحاولة القادمة.", key: ["تطوير", "محاولة"] },
-            { q: "لماذا المتوسط؟", a: "مرحلة بناء المفاهيم ومرافقة المراهق تربوياً.", key: ["متوسط", "بناء"] },
-            { q: "الهندام والوقار؟", a: "يعكس احترام المهنة ويفرض الهيبة الطبيعية.", key: ["هندام", "وقار"] },
-            { q: "رسالتك للجنة؟", a: "أشكركم على وقتكم وأؤكد عزمي على أداء الأمانة.", key: ["شكر", "أمانة"] }
-        ],
-        [ // الأخلاقيات (15 سؤال)
-            { q: "ميثاق الأخلاقيات؟", a: "قيم ومبادئ تنظم سلوك المربي تجاه التلميذ والزملاء.", key: ["قيم", "مبادئ", "ميثاق"] },
-            { q: "الأمانة العلمية؟", a: "تقديم معلومات صحيحة وتوثيق المصادر والعدل.", key: ["أمانة", "معلومات"] },
-            { q: "التربية قبل التعليم؟", a: "بناء الأخلاق والشخصية يسبق شحن المعلومات.", key: ["أخلاق", "تربية"] },
-            { q: "التكوين الذاتي؟", a: "مواكبة التطورات العلمية والبيداغوجية المتسارعة.", key: ["تكوين", "ذاتي"] },
-            { q: "توازن الحياة؟", a: "بتنظيم الوقت وترك مشاكل العمل في المؤسسة.", key: ["توازن", "وقت"] },
-            { q: "الهدوء في المواقف؟", a: "بالتنفس العميق وعدم التسرع في الرد.", key: ["هدوء", "صبر"] },
-            { q: "المسابقات التربوية؟", a: "تحفز على الإبداع وتخلق جواً تنافسياً.", key: ["إبداع", "تنافس"] },
-            { q: "حماية البيئة المدرسية؟", a: "توعية التلاميذ بالنظافة والمحافظة على الممتلكات.", key: ["بيئة", "نظافة"] },
-            { q: "مستقبل التعليم؟", a: "متفائل بالتحول نحو الجودة والرقمنة.", key: ["مستقبل", "جودة"] },
-            { q: "القيمة المضافة؟", a: "الجدية والابتكار في التدريس وحب المادة.", key: ["ابتكار", "جدية"] },
-            { q: "التواضع؟", a: "يجعل التلاميذ يتقبلون منه النصيحة والعلم.", key: ["تواضع", "حب"] },
-            { q: "تغيير المناهج؟", a: "بمرونة وسعي لفهم الفلسفة الجديدة.", key: ["مناهج", "مرونة"] },
-            { q: "العطلة الصيفية؟", a: "راحة ثم تحضير للسنة القادمة بمراجعة الملاحظات.", key: ["راحة", "تحضير"] },
-            { q: "السر المهني؟", a: "عدم إفشاء أسرار التلاميذ أو المؤسسة إلا للجهات المختصة.", key: ["سر", "إفشاء"] },
-            { q: "علاقتك بالزملاء؟", a: "مبنية على الاحترام المتبادل والتعاون المهني.", key: ["احترام", "زملاء"] }
-        ]
-    ],
-    pedagogy: [
-        [ // أساسيات
-            { q: "المقاربة بالكفاءات (APC)؟", a: "جعل التلميذ محور العملية وحل وضعيات مشكلة.", key: ["محور", "مشكلة", "كفاءة"] },
-            { q: "التقييم والتقويم؟", a: "التقييم رصد للمستوى، والتقويم هو الإصلاح والعلاج.", key: ["رصد", "إصلاح"] },
-            { q: "مراحل بناء التعلمات؟", a: "انطلاق، بناء، حوصلة، استثمار.", key: ["انطلاق", "بناء", "استثمار"] },
-            { q: "مفهوم المجرد؟", a: "بربطه بأشياء ملموسة كالنماذج والوسائل.", key: ["ملموسة", "تبسيط"] },
-            { q: "دور الأستاذ في APC؟", a: "الموجه، المنشط، والميسر وليس الملقن.", key: ["موجه", "منشط"] },
-            { q: "الفروق الفردية؟", a: "بتنويع الأنشطة (البيداغوجيا الفارقية).", key: ["تنويع", "فارقية"] },
-            { q: "السجل اليومي؟", a: "وثيقة قانونية يسجل فيها النشاطات والدروس.", key: ["وثيقة", "يومي"] },
-            { q: "كراس النصوص؟", a: "سجل رسمي يثبت الدروس المنجزة وتاريخها.", key: ["رسمي", "دروس"] },
-            { q: "الوثيقة المرافقة؟", a: "دليل يشرح كيفية تطبيق المنهاج زمنياً.", key: ["دليل", "تطبيق"] },
-            { q: "تقييم تشخيصي؟", a: "بداية السنة لمعرفة المكتسبات القبلية.", key: ["قبلية", "تشخيصي"] },
-            { q: "تقييم تكويني؟", a: "أثناء الدرس لاكتشاف الثغرات ومعالجتها.", key: ["أثناء", "تكويني"] },
-            { q: "تقييم تحصيلي؟", a: "نهاية الفصل لقياس مدى تحقق الكفاءة.", key: ["نهاية", "تحصيلي"] },
-            { q: "العتبة؟", a: "تحديد القدر الأدنى من الدروس للامتحانات.", key: ["دروس", "تكافؤ"] },
-            { q: "وضعية مشكلة؟", a: "سياق يواجه فيه التلميذ عائقاً يتطلب الحل.", key: ["سياق", "عائق"] },
-            { q: "بيداغوجيا اللعب؟", a: "استخدام الألعاب لتبسيط مفاهيم الرياضيات.", key: ["لعب", "تحفيز"] }
-        ],
-        [ // التخطيط
-            { q: "أهمية المذكرة؟", a: "تجنب العشوائية وضبط الوقت والوسائل.", key: ["عشوائية", "وقت"] },
-            { q: "عناصر المذكرة؟", a: "الكفاءة، مراحل الدرس، النشاط، والتقويم.", key: ["كفاءة", "مراحل"] },
-            { q: "التوزيع السنوي؟", a: "مخطط لتوزيع البرنامج على مدار السنة.", key: ["برنامج", "سنة"] },
-            { q: "الوسيلة التعليمية؟", a: "حسب طبيعة الدرس وسن التلاميذ للتبسيط.", key: ["طبيعة", "تبسيط"] },
-            { q: "مذكرة السند؟", a: "تحضير للوضعيات التي توزع على التلاميذ.", key: ["سند", "أنشطة"] },
-            { q: "درس لم تفهمه؟", a: "أبحث في المراجع وأستشير الزملاء أو المفتش.", key: ["مراجع", "استشارة"] },
-            { q: "أهداف الدرس؟", a: "قابلة للقياس والملاحظة وتناسب المستوى.", key: ["قياس", "مستوى"] },
-            { q: "الحوصلة؟", a: "ملخص لما تعلمه التلميذ يكتب على الكراس.", key: ["ملخص", "كراس"] },
-            { q: "تنظيم السبورة؟", a: "بشكل منطقي لسهولة المتابعة والتدوين.", key: ["منطقي", "متابعة"] },
-            { q: "الواجب المنزلي؟", a: "تعزيز التعلمات وقياس العمل المستقل.", key: ["تعزيز", "مستقل"] },
-            { q: "المنهاج والبرنامج؟", a: "المنهاج هو الفلسفة والبرنامج هو الدروس.", key: ["فلسفة", "دروس"] },
-            { q: "دليل الأستاذ؟", a: "كتاب يرافق المنهاج يقدم توجيهات تنفيذية.", key: ["دليل", "توجيهات"] },
-            { q: "الأنشطة اللاصفية؟", a: "تنمية مهارات التلميذ خارج الإطار المدرسي.", key: ["تنمية", "مهارات"] },
-            { q: "خطة فاشلة؟", a: "بتحليل نقاط الضعف وتغيير الاستراتيجية.", key: ["تحليل", "تغيير"] },
-            { q: "تسيير الحصة؟", a: "ضبط الوقت بين الانطلاق، البناء، والخلاصة.", key: ["ضبط", "وقت"] }
-        ],
-        [ // تشريع 1
-            { q: "القانون الأساسي؟", a: "المرسوم التنفيذي 08-315 المعدل بـ 12-240.", key: ["315", "240"] },
-            { q: "حقوق الموظف؟", a: "الراتب، العطل، الترقية، والتكوين.", key: ["راتب", "عطل"] },
-            { q: "واجبات الموظف؟", a: "الالتزام بالوقت، السر المهني، وحماية الملكية.", key: ["سر", "وقت"] },
-            { q: "عقوبات الدرجة الأولى؟", a: "التنبيه، الإنذار الكتابي، والتوبيخ.", key: ["تنبيه", "توبيخ"] },
-            { q: "المجلس التربوي؟", a: "تنسيق المواد والوسائل والقضايا التربوية.", key: ["تنسيق", "تربوية"] },
-            { q: "مجلس القسم؟", a: "دراسة نتائج التلاميذ وقرارات التوجيه.", key: ["نتائج", "توجيه"] },
-            { q: "الأمانة التربوية؟", a: "سرية الأسئلة والنقاط والملفات الشخصية.", key: ["سرية", "نقاط"] },
-            { q: "عطلة مرضية؟", a: "بشهادة طبية تخضع لرقابة الضمان الاجتماعي.", key: ["شهادة", "ضمان"] },
-            { q: "مجلس التنسيق الإداري؟", a: "تنسيق بين المصالح لضمان سير المؤسسة.", key: ["تنسيق", "إداري"] },
-            { q: "تسخير الأستاذ؟", a: "تكليفه بمهام رسمية في الامتحانات.", key: ["تكليف", "رسمية"] },
-            { q: "التثبيت؟", a: "ترسيم الأستاذ بعد سنة تربص بزيارة لجنة.", key: ["ترسيم", "تربص"] },
-            { q: "عطل استثنائية؟", a: "مدفوعة الأجر (زواج، ولادة، وفاة).", key: ["زواج", "ولادة"] },
-            { q: "الإضراب؟", a: "حق دستوري ضمن القانون والحد الأدنى للخدمة.", key: ["إضراب", "قانون"] },
-            { q: "الهيئة المستخدمة؟", a: "وزارة التربية الوطنية (مديرية التربية).", key: ["وزارة", "مديرية"] },
-            { q: "حركات نقلية؟", a: "تغيير المؤسسة بناءً على الرغبة ومعايير.", key: ["نقل", "رغبة"] }
-        ],
-        [ // تشريع 2
-            { q: "نظام داخلي؟", a: "قواعد تنظم الحياة المدرسية والانضباط.", key: ["قواعد", "نظام"] },
-            { q: "جمعية الأولياء؟", a: "جسر تواصل لتحسين النتائج المدرسية.", key: ["تواصل", "أولياء"] },
-            { q: "الحرم المدرسي؟", a: "منع الغرباء أو أنشطة غير تربوية.", key: ["حرم", "غرباء"] },
-            { q: "مستشار التربية؟", a: "النظام، الغيابات، وتنظيم حياة التلاميذ.", key: ["نظام", "غيابات"] },
-            { q: "مجلس الانضباط؟", a: "يفصل في المخالفات ويقرر العقوبات.", key: ["انضباط", "عقوبات"] },
-            { q: "وصاية تربوية؟", a: "مسؤولية الأستاذ عن سلامة التلميذ بالقسم.", key: ["سلامة", "مسؤولية"] },
-            { q: "تقرير يومي؟", a: "رصد لأي طارئ في المؤسسة يومياً.", key: ["تقرير", "طارئ"] },
-            { q: "دور المفتش؟", a: "المرافقة، التكوين، وتقييم الأداء.", key: ["مفتش", "تكوين"] },
-            { q: "مطاعم مدرسية؟", a: "وجبات للتلاميذ خاصة في المناطق البعيدة.", key: ["مطاعم", "وجبات"] },
-            { q: "جمعية رياضية؟", a: "تنشيط الحياة المدرسية بمسابقات ثقافية.", key: ["رياضية", "تنشيط"] },
-            { q: "الاستيداع؟", a: "توقف مؤقت عن العمل لأسباب خاصة دون راتب.", key: ["استيداع", "توقف"] },
-            { q: "وثائق التلميذ؟", a: "شهادة مدرسية، دفتر صحي، وكشف نقاط.", key: ["شهادة", "دفتر"] },
-            { q: "رقمنة القطاع؟", a: "استخدام الأرضية الرقمية في التسيير.", key: ["رقمية", "أرضية"] },
-            { q: "تعليم إلزامي؟", a: "إجباري ومجاني من 6 إلى 16 سنة.", key: ["إلزامي", "مجاني"] },
-            { q: "ميثاق الأخلاقيات؟", a: "التزام لضمان استقرار القطاع والهدوء.", key: ["ميثاق", "استقرار"] }
-        ]
-    ],
-    math: [
-        [ // حساب
-            { q: "العدد الأولي؟", a: "طبيعي أكبر من 1 له قاسمان فقط: 1 ونفسه.", key: ["قاسمان", "نفسه"] },
-            { q: "قيمة مطلقة؟", a: "المسافة بين نقطة والمبدأ، وهي دائماً موجبة.", key: ["مسافة", "موجبة"] },
-            { q: "الـ PGCD؟", a: "أكبر عدد يقسم عددين معاً دون باقٍ.", key: ["أكبر", "يقسم"] },
-            { q: "كسر غير قابل للاختزال؟", a: "بسطه ومقامه أوليان فيما بينهما (1=PGCD).", key: ["أوليان", "واحد"] },
-            { q: "تبسيط الجذر؟", a: "كتابة ما تحت الجذر كجذاء أحدهما مربع تام.", key: ["مربع", "تام"] },
-            { q: "ناطق وأصم؟", a: "الناطق كسر p/q، والأصم لا (مثل جذر 2).", key: ["كسر", "أصم"] },
-            { q: "كتابة علمية؟", a: "على شكل a × 10^n حيث a بين 1 و10.", key: ["علمية", "قوة"] },
-            { q: "المتراجحة؟", a: "عبارة بمجهول ورمز تفاوت (أكبر/أصغر).", key: ["مجهول", "تفاوت"] },
-            { q: "دالة خطية؟", a: "علاقة ax تمثيلها مستقيم يمر بالمبدأ.", key: ["مستقيم", "المبدأ"] },
-            { q: "دالة تآلفية؟", a: "علاقة ax+b تمثيلها مستقيم لا يمر بالمبدأ.", key: ["مستقيم", "ax+b"] },
-            { q: "معامل التوجيه؟", a: "العدد (a) الذي يحدد ميل المستقيم.", key: ["ميل", "توجيه"] },
-            { q: "حل جملة؟", a: "بالتعويض أو الجمع والتعويض.", key: ["جمع", "تعويض"] },
-            { q: "المميز دلتا؟", a: "لحل معادلة الدرجة الثانية وتحديد الحلول.", key: ["دلتا", "درجة"] },
-            { q: "متطابقات شهيرة؟", a: "قواعد لتسهيل النشر والتحليل الرياضي.", key: ["نشر", "تحليل"] },
-            { q: "التربيع والجذر؟", a: "عمليتان عكسيتان لبعضهما البعض.", key: ["عكسية", "تربيع"] }
-        ],
-        [ // هندسة 1
-            { q: "فيثاغورس؟", a: "مربع الوتر يساوي مجموع مربعي الضلعين.", key: ["وتر", "مربع"] },
-            { q: "طالس؟", a: "لحساب الأطوال بوجود توازي مستقيمين.", key: ["توازي", "أطوال"] },
-            { q: "Cos الزاوية؟", a: "نسبة المجاور إلى الوتر.", key: ["مجاور", "وتر"] },
-            { q: "Sin الزاوية؟", a: "نسبة المقابل إلى الوتر.", key: ["مقابل", "وتر"] },
-            { q: "Tan الزاوية؟", a: "نسبة المقابل إلى المجاور.", key: ["مقابل", "مجاور"] },
-            { q: "مركزية ومحيطية؟", a: "المركزية رأسها المركز، والمحيطية على الدائرة.", key: ["رأس", "مركز"] },
-            { q: "متوسط الوتر؟", a: "طوله نصف طول الوتر في المثلث القائم.", key: ["نصف", "وتر"] },
-            { q: "دائرة محيطة؟", a: "مركزها منتصف وتر المثلث القائم.", key: ["منتصف", "وتر"] },
-            { q: "التماس؟", a: "يشترك مع الدائرة في نقطة وعمودي على القطر.", key: ["عمودي", "نقطة"] },
-            { q: "الانسحاب؟", a: "تحويل بشعاع له اتجاه، منحى، وطول.", key: ["شعاع", "اتجاه"] },
-            { q: "متوازي الأضلاع؟", a: "كل ضلعين متقابلين متوازيان ومتساويان.", key: ["توازي", "تساوي"] },
-            { q: "المعين؟", a: "متوازي أضلاع أضلاعه متقايسة وقطراه متعامدان.", key: ["متقايسة", "تعامد"] },
-            { q: "المستطيل؟", a: "زواياه قائمة وقطراه متقايسان.", key: ["قائمة", "متقايسان"] },
-            { q: "التناظر؟", a: "محوري (حول مستقيم) أو مركزي (حول نقطة).", key: ["محوري", "مركزي"] },
-            { q: "إثبات القائم؟", a: "باستخدام عكسية فيثاغورس.", key: ["عكسية", "فيثاغورس"] }
-        ],
-        [ // إحصاء
-            { q: "شعاعان متساويان؟", a: "لهما نفس المنحى، الاتجاه، والطول.", key: ["منحى", "اتجاه"] },
-            { q: "علاقة شال؟", a: "نهاية الأول هي بداية الثاني.", key: ["نهاية", "بداية"] },
-            { q: "المسافة؟", a: "قانون الجذر لفرق مربعات الإحداثيات.", key: ["جذر", "فرق"] },
-            { q: "تكرار صاعد؟", a: "مجموع التكرارات التي تقل عن قيمة معينة.", key: ["مجموع", "صاعد"] },
-            { q: "المدى؟", a: "الفرق بين أكبر وأصغر قيمة.", key: ["فرق", "أكبر"] },
-            { q: "المنوال؟", a: "القيمة الأكثر تكراراً في السلسلة.", key: ["أكثر", "تكرار"] },
-            { q: "متوسط حسابي؟", a: "مجموع القيم مقسوماً على عددها.", key: ["مجموع", "عدد"] },
-            { q: "الوسيط (Med)؟", a: "القيمة التي تقسم السلسلة لجزئين متساويين.", key: ["تقسم", "متساويين"] },
-            { q: "الاحتمال؟", a: "نسبة الحالات الملائمة للممكنة (0 إلى 1).", key: ["نسبة", "ملائمة"] },
-            { q: "سلسلة إحصائية؟", a: "بيانات مسجلة حول ظاهرة معينة.", key: ["بيانات", "ظاهرة"] },
-            { q: "عينة ومجتمع؟", a: "المجتمع هو الكل والعينة جزء للدراسة.", key: ["جزء", "كل"] },
-            { q: "فئة إحصائية؟", a: "مجال يضم قيماً في السلاسل المستمرة.", key: ["مجال", "قيم"] },
-            { q: "تكرار نسبي؟", a: "حاصل قسمة التكرار على الإجمالي.", key: ["قسمة", "إجمالي"] },
-            { q: "تمثيل بصري؟", a: "بالأعمدة أو المدرج لعرض التوزيع.", key: ["أعمدة", "توزيع"] },
-            { q: "تواتر؟", a: "نسبة تكرار القيمة إلى مجموع التكرارات.", key: ["نسبة", "مجموع"] }
-        ],
-        [ // فضاء
-            { q: "الهرم؟", a: "قاعدته مضلع وجوانبه مثلثات برأس واحد.", key: ["قاعدة", "مثلثات"] },
-            { q: "مخروط؟", a: "دوران مثلث قائم حول ضلع القائم.", key: ["دوران", "قائم"] },
-            { q: "حجم المنشور؟", a: "مساحة القاعدة × الارتفاع.", key: ["مساحة", "ارتفاع"] },
-            { q: "حجم الكرة؟", a: "V = (4/3) × π × r³.", key: ["نصف القطر", "حجم"] },
-            { q: "مساحة الدائرة؟", a: "A = π × r².", key: ["مساحة", "نصف القطر"] },
-            { q: "المكعب؟", a: "وجوهه الستة مربعات متطابقة.", key: ["مربعات", "وجوه"] },
-            { q: "متوازي مستطيلات؟", a: "مجسم وجوهه مستطيلات متقابلة متساوية.", key: ["مستطيلات", "مجسم"] },
-            { q: "وحدات مساحة؟", a: "المتر المربع، الآر، والهكتار.", key: ["مربع", "آر"] },
-            { q: "تحويل الحجم؟", a: "كل 1 دسم مكعب يساوي 1 لتر.", key: ["لتر", "دسم"] },
-            { q: "راديان؟", a: "القائمة تساوي π/2 راديان.", key: ["راديان", "π"] },
-            { q: "الارتفاع؟", a: "مار بالرأس وعمودي على المقابل.", key: ["عمودي", "رأس"] },
-            { q: "المنصف؟", a: "يقسم الزاوية لزاويتين متقايستين.", key: ["يقسم", "زاوية"] },
-            { q: "المحور؟", a: "عمودي على القطعة في منتصفها.", key: ["عمودي", "منتصف"] },
-            { q: "مجسم دوراني؟", a: "ناتج عن دوران شكل حول محور.", key: ["دوران", "محور"] },
-            { q: "قاعدة أويلر؟", a: "وجوه + رؤوس - حواف = 2.", key: ["وجوه", "رؤوس"] }
-        ],
-        [ // تكنولوجيا
-            { q: "GeoGebra؟", a: "برنامج تفاعلي للهندسة والجبر والجداول.", key: ["تفاعلي", "هندسة"] },
-            { q: "حاسبة علمية؟", a: "لحساب الدوال والقوى والجذور بسرعة.", key: ["دوال", "جذور"] },
-            { q: "أهمية البرمجيات؟", a: "تصور الأشكال والتحقق وتحفيز التلاميذ.", key: ["تصور", "تحفيز"] },
-            { q: "عرض البيانات؟", a: "الـ Data Show لعرض المحتوى بوضوح.", key: ["عرض", "بيانات"] },
-            { q: "رسم دالة؟", a: "بإدخال العبارة في حقل الأوامر فوراً.", key: ["أوامر", "رسم"] },
-            { q: "منصات رقمية؟", a: "مثل Moodle لمشاركة الدروس عن بعد.", key: ["رقمية", "بعد"] },
-            { q: "تحقق تقني؟", a: "باستخدام خوارزميات أو دوال الحاسبة.", key: ["خوارزميات", "دوال"] },
-            { q: "ذكاء اصطناعي؟", a: "أدوات لتخصيص التعلم ومساعدة الحلول.", key: ["ذكاء", "تخصيص"] },
-            { q: "كتاب تفاعلي؟", a: "رقمي يضم فيديوهات وروابط نشطة.", key: ["رقمي", "فيديو"] },
-            { q: "جبر منطقي؟", a: "أساس الحواسيب بالقيمتين 0 و1.", key: ["منطق", "صفر"] },
-            { q: "حماية رقمية؟", a: "توعية التلاميذ بمخاطر الإنترنت والخصوصية.", key: ["إنترنت", "خصوصية"] },
-            { q: "تعلم مدمج؟", a: "جمع بين الحضوري والتعليم عبر الإنترنت.", key: ["حضوري", "إنترنت"] },
-            { q: "استخدام Excel؟", a: "تنظيم البيانات وحساب المتوسطات والمخططات.", key: ["بيانات", "مخططات"] },
-            { q: "محاكاة رقمية؟", a: "تمثيل تجارب يصعب تنفيذها يدوياً.", key: ["تمثيل", "يدوياً"] },
-            { q: "رقمنة الدرس؟", a: "تحويله لعرض تقديمي تفاعلي (PPT).", key: ["تفاعلي", "عرض"] }
-        ]
-    ],
-    management: [
-        [ // مواقف
-            { q: "تلميذ مشاغب؟", a: "هدوء، تغيير مكانه، والتحاور معه انفراداً.", key: ["هدوء", "انفراد"] },
-            { q: "سؤال لا تعرفه؟", a: "أثني عليه وأعده بالبحث للحصة القادمة.", key: ["أثني", "بحث"] },
-            { q: "جذب الانتباه؟", a: "لغز رياضي أو وضعية مستفزة للذكاء.", key: ["لغز", "مستفزة"] },
-            { q: "نقص الأدوات؟", a: "بحث السبب وتواصل مع الولي لتوفيرها.", key: ["سبب", "ولي"] },
-            { q: "الاكتظاظ؟", a: "تنظيم أفواج ومراقبة دورانية مستمرة.", key: ["أفواج", "مراقبة"] },
-            { q: "تلميذ انطوائي؟", a: "إدماجه في مجموعات صغيرة وتشجيعه.", key: ["إدماج", "تشجيع"] },
-            { q: "صراع تلاميذ؟", a: "فصل الأطراف والاستماع لكل منهما بعدل.", key: ["فصل", "استماع"] },
-            { q: "تأخر الأستاذ؟", a: "الاعتذار والبدء فوراً لتعويض الوقت.", key: ["اعتذار", "تعويض"] },
-            { q: "رفض المشاركة؟", a: "تحفيز بالنقاط أو أنشطة يحبها.", key: ["تحفيز", "نقاط"] },
-            { q: "إصابة تلميذ؟", a: "إسعاف أولي وإبلاغ الإدارة والولي.", key: ["إسعاف", "إدارة"] },
-            { q: "تلميذ موهوب؟", a: "إعطاؤه تمارين تحدي إضافية لتطويره.", key: ["تحدي", "إضافية"] },
-            { q: "إهانة تلميذ؟", a: "مرفوضة تماماً، الاحترام أساس العلاقة.", key: ["مرفوضة", "احترام"] },
-            { q: "ضبط الصف؟", a: "بالنظرة، نبرة الصوت، والعدل.", key: ["صوت", "عدل"] },
-            { q: "تخريب ممتلكات؟", a: "توعية ثم إجراء تأديبي وتعويض الولي.", key: ["توعية", "تعويض"] },
-            { q: "غياب تلميذ؟", a: "تسجيله وإبلاغ المستشار للتحقق.", key: ["تسجيل", "غياب"] }
-        ],
-        [ // صعوبات
-            { q: "عسر الحساب؟", a: "وسائل ملموسة ووقت إضافي وتدرج.", key: ["ملموسة", "وقت"] },
-            { q: "ضعف التركيز؟", a: "أنشطة قصيرة ومتنوعة وتغيير الوتيرة.", key: ["متنوعة", "وتيرة"] },
-            { q: "الخوف من المادة؟", a: "ربطها بالواقع والتشجيع المستمر.", key: ["واقع", "تشجيع"] },
-            { q: "تأخر دراسي؟", a: "دروس دعم ومعالجة بيداغوجية مركزة.", key: ["دعم", "معالجة"] }
-        ],
-        [ // أولياء
-            { q: "ولي يشتكي؟", a: "شرح المنهجية ونصائح للمرافقة البيتية.", key: ["منهجية", "نصائح"] },
-            { q: "ولي يتدخل؟", a: "لباقة وتوضيح حدود الأدوار التربوية.", key: ["لباقة", "حدود"] },
-            { q: "استدعاء الولي؟", a: "للتعاون في مصلحة التلميذ وليس للعقاب.", key: ["تعاون", "مصلحة"] },
-            { q: "غياب التواصل؟", a: "استخدام الدفتر المدرسي أو الأرضية الرقمية.", key: ["دفتر", "رقمية"] }
-        ]
-    ]
-};
-
-// الدوال التشغيلية
-let activeMain = 'personal';
-let activeSub = 0;
-let currentQIdx = 0;
-let synth = window.speechSynthesis;
-
-function updateSelection(main, sub) {
-    activeMain = main;
-    activeSub = parseInt(sub);
-    getNewQuestion();
-}
-
-function getNewQuestion() {
-    const list = masterDB[activeMain][activeSub];
-    currentQIdx = Math.floor(Math.random() * list.length);
-    const q = list[currentQIdx];
-    
-    document.getElementById('question-box').innerText = q.q;
-    document.getElementById('user-input').value = "";
-    document.getElementById('feedback-area').style.display = "none";
-    document.getElementById('counter').innerText = `قسم: ${activeSub + 1} | سؤال: ${currentQIdx + 1}`;
-    
-    speak(q.q);
-}
-
-function speak(text) {
-    if (synth.speaking) synth.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'ar-SA';
-    utter.rate = 0.95;
-    synth.speak(utter);
-}
-
-function checkResponse() {
-    const input = document.getElementById('user-input').value.trim();
-    if (!input) return speak("اكتب إجابة أولاً");
-
-    const q = masterDB[activeMain][activeSub][currentQIdx];
-    let score = 0;
-    q.key.forEach(k => { if(input.includes(k)) score++; });
-
-    const area = document.getElementById('feedback-area');
-    area.style.display = "block";
-    const isOk = score >= 1;
-    
-    area.className = isOk ? 'lcd-success' : 'lcd-error';
-    area.innerHTML = `<div>${isOk ? '✓ إجابة احترافية' : '✗ إجابة تحتاج تعزيزاً'}</div>
-                      <div class="model-ans-box"><b>النموذج المقترح:</b> ${q.a}</div>`;
-    
-    speak(isOk ? "إجابة موفقة" : "إليك النموذج: " + q.a);
-}
-
-function startVoiceRecognition() {
-    const btn = document.getElementById('mic-btn');
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return alert("متصفحك لا يدعم التعرف الصوتي");
-
-    const rec = new SpeechRecognition();
-    rec.lang = 'ar-SA';
-    rec.onstart = () => btn.classList.add('mic-active');
-    rec.onresult = (e) => {
-        document.getElementById('user-input').value = e.results[0][0].transcript;
-        btn.classList.remove('mic-active');
-    };
-    rec.start();
-}
-
-window.onload = getNewQuestion;
-</script>
+<script src="script.js"></script>
 </body>
 </html>

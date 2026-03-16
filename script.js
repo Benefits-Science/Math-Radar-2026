@@ -267,50 +267,60 @@ const masterDB = {
     ]
 };
 
-// المتغيرات التشغيلية
-let activeMain = 'personal'; 
+// 1. قاعدة البيانات (masterDB) - اتركها كما هي في ملفك بالأعلى
+// const masterDB = { ... }; 
+
+// 2. المتغيرات (تأكد أنها معرفة مرة واحدة فقط هنا)
+let activeMain = 'personal';
 let activeSub = 0;
-let currentQIdx = 0;
-let synth = window.speechSynthesis;
+let currentQIdx = -1;
 
-// 1. وظيفة النطق التلقائي (التي طلبتها في التعديلات)
-function speak(text) {
-    if (synth.speaking) synth.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'ar-SA';
-    utter.rate = 0.95;
-    synth.speak(utter);
+// 3. وظيفة التنقل بين الأقسام (المحسنة)
+function switchSection(category, subIndex) {
+    activeMain = category;
+    activeSub = parseInt(subIndex);
+    const qTextElement = document.getElementById('q-text');
+    if (qTextElement) {
+        qTextElement.innerText = "تم تغيير القسم.. اضغط سؤال جديد";
+    }
+    const feedbackArea = document.getElementById('feedback-area');
+    if (feedbackArea) {
+        feedbackArea.style.display = "none";
+    }
 }
 
-// 2. تحديث الاختيار من القوائم المنسدلة
-function updateSelection(main, sub) {
-    activeMain = main;
-    activeSub = parseInt(sub);
-    getNewQuestion();
-}
-
-// 3. جلب سؤال جديد مع النطق التلقائي
+// 4. سحب سؤال جديد (بصيغته الكاملة كما طلبت)
 function getNewQuestion() {
     const questions = masterDB[activeMain][activeSub];
-    currentQIdx = Math.floor(Math.random() * questions.length);
-    const qText = questions[currentQIdx].q;
+    if (!questions || questions.length === 0) return;
 
-    document.getElementById('question-box').innerText = qText;
-    document.getElementById('user-input').value = "";
-    document.getElementById('feedback-area').style.display = "none";
+    currentQIdx = Math.floor(Math.random() * questions.length);
+    const qObj = questions[currentQIdx];
     
-    // تحديث العداد
-    document.getElementById('counter').innerText = `عدد أسئلة الجزء: ${questions.length}`;
+    // إظهار النص الكامل للسؤال
+    const qTextElement = document.getElementById('q-text');
+    if (qTextElement) {
+        qTextElement.innerText = qObj.q;
+    }
     
-    // نطق السؤال تلقائياً فور ظهوره
-    speak(qText);
+    // تصفير الخانات السابقة
+    const userInput = document.getElementById('user-input');
+    if (userInput) userInput.value = "";
+    
+    const feedbackArea = document.getElementById('feedback-area');
+    if (feedbackArea) feedbackArea.style.display = "none";
+    
+    // نطق السؤال تلقائياً
+    speak(qObj.q);
 }
 
-// 4. تحليل الإجابة بناءً على الكلمات المفتاحية
+// 5. تحليل الإجابة (المنطق السابق مع الاحتفاظ بالنموذج)
 function checkResponse() {
-    const input = document.getElementById('user-input').value.trim();
-    if (!input) {
-        speak("يرجى كتابة أو نطق إجابة أولاً");
+    const userInput = document.getElementById('user-input');
+    const input = userInput ? userInput.value.trim() : "";
+    
+    if (!input || currentQIdx === -1) {
+        speak("من فضلك، أجب على السؤال أولاً");
         return;
     }
 
@@ -319,29 +329,56 @@ function checkResponse() {
     q.key.forEach(k => { if(input.includes(k)) score++; });
 
     const area = document.getElementById('feedback-area');
-    area.style.display = "block";
-    const isOk = score >= 1;
-    
-    area.className = isOk ? 'lcd-success' : 'lcd-error';
-    area.innerHTML = `<div>${isOk ? '✓ إجابة احترافية' : '✗ إجابة تحتاج تعزيزاً'}</div>
-                      <div class="model-ans-box"><b>النموذج:</b> ${q.a}</div>`;
-    
-    // نطق التقييم والنموذج
-    speak(isOk ? "إجابة موفقة. النموذج هو: " + q.a : "إجابة تحتاج دقة أكثر. النموذج هو: " + q.a);
+    if (area) {
+        area.style.display = "block";
+        const isOk = score >= 1;
+        
+        area.className = `lcd-box ${isOk ? 'lcd-success' : 'lcd-error'}`;
+        area.innerHTML = `<strong>${isOk ? '✓ إجابة جيدة' : '✗ تحتاج لإجابة أدق'}</strong><br>
+                          <small>النموذج المقترح: ${q.a}</small>`;
+        
+        speak(isOk ? "إجابة جيدة" : "تحتاج لإجابة أكثر دقة، إليك النموذج");
+    }
 }
 
-// 5. وظيفة الميكروفون (كما في ملفك الأصلي)
+// 6. وظيفة النطق (Speech Synthesis)
+function speak(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'ar-SA';
+        msg.rate = 0.9;
+        window.speechSynthesis.speak(msg);
+    }
+}
+
+// 7. وظيفة الميكروفون (التي كانت ت
 function startVoiceRecognition() {
+    const btn = document.getElementById('mic-btn');
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return alert("المتصفح لا يدعم المايكروفون");
+    
+    if (!SpeechRecognition) {
+        alert("متصفحك لا يدعم التعرف الصوتي، جرب Google Chrome");
+        return;
+    }
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'ar-SA';
-    recognition.onresult = (event) => {
-        document.getElementById('user-input').value = event.results[0][0].transcript;
+    const rec = new SpeechRecognition();
+    rec.lang = 'ar-SA';
+    rec.start();
+    
+    if(btn) btn.classList.add('active'); // تفعيل الأنيميشن
+
+    rec.onresult = (e) => {
+        const transcript = e.results[0][0].transcript;
+        const userInput = document.getElementById('user-input');
+        if(userInput) userInput.value = transcript;
     };
-    recognition.start();
-}
 
-// التشغيل التلقائي عند التحميل
-window.onload = getNewQuestion;
+    rec.onend = () => {
+        if(btn) btn.classList.remove('active'); // إيقاف الأنيميشن
+    };
+    
+    rec.onerror = () => {
+        if(btn) btn.classList.remove('active');
+    };
+}
